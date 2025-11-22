@@ -6,6 +6,7 @@ services:
     depends_on:
       - postgres
     environment:
+      ROCKET_PORT: 9050
       WEBSOCKET_ENABLED: 'true'
       SIGNUPS_ALLOWED: 'false'
       DOMAIN: "${DOMAIN}"
