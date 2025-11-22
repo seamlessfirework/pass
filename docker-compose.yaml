@@ -14,6 +14,8 @@ services:
       DATABASE_URL: "${DATABASE_URL}"
       DB_SSL: "false"
       DB_TIMEOUT: "30"
+    ports:
+      - "9050:9050"
 
     volumes:
       - /home/dietpi/apps/volumes/pass:/data
