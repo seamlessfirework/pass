@@ -1,0 +1,33 @@
+services:
+  pass:
+    image: vaultwarden/server:latest
+    container_name: pass-warden
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      WEBSOCKET_ENABLED: 'true'
+      SIGNUPS_ALLOWED: 'false'
+      DOMAIN: "${DOMAIN}"
+
+      DATABASE_URL: "${DATABASE_URL}"
+      DB_SSL: "false"
+      DB_TIMEOUT: "30"
+
+    volumes:
+      - /home/dietpi/apps/volumes/pass:/data
+
+  postgres:
+    image: postgres:17
+    container_name: pass-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - /home/dietpi/apps/volumes/pass/postgres:/var/lib/postgresql/data
+      - /home/dietpi/apps/volumes/pass/postgres/conf/postgresql.conf:/etc/postgresql/postgresql.conf
+    command: >
+      -c config_file=/etc/postgresql/postgresql.conf
