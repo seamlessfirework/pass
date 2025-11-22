@@ -7,6 +7,8 @@ services:
       - postgres
     environment:
       ROCKET_PORT: 9050
+      # Generate encrypted password
+      # docker exec -it pass-warden /vaultwarden hash
       ADMIN_TOKEN: "${ADMIN_TOKEN}"
       WEBSOCKET_ENABLED: 'true'
       SIGNUPS_ALLOWED: 'false'
