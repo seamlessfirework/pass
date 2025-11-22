@@ -7,6 +7,7 @@ services:
       - postgres
     environment:
       ROCKET_PORT: 9050
+      ADMIN_TOKEN: "${ADMIN_TOKEN}"
       WEBSOCKET_ENABLED: 'true'
       SIGNUPS_ALLOWED: 'false'
       DOMAIN: "${DOMAIN}"
